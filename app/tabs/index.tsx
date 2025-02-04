@@ -1,10 +1,17 @@
-import { View, Text } from 'react-native'
+import { View, Text,Pressable } from 'react-native'
+import { Link, useRouter } from 'expo-router'
 import React from 'react'
 
 const index = () => {
+  const router=useRouter();
+  const logout=()=>{
+    router.push("/")
+  }
   return (
     <View>
-      <Text>Menu Principal</Text>
+      <Text>Desconectarse</Text>
+      <Pressable onPress={logout}>Cerrar sesion</Pressable>
+
     </View>
   )
 }

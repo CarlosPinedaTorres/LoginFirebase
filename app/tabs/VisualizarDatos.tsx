@@ -4,7 +4,7 @@ import React from 'react'
 const VisualizarDatos = () => {
   return (
     <View>
-      <Text>VisualizarDatos</Text>
+      <Text>Datos de la base de datos</Text>
     </View>
   )
 }
