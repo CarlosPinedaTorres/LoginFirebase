@@ -11,8 +11,8 @@ export default function Index() {
       <View>
         <CustomTextInput placeholder={"Introduce la contraseña"} width={150} height={150} />
       </View>
-      <Link href={"/drawer"} style={[GlobalStyles.linkButton]}>Login</Link>
-      <Pressable ><Text>Registro</Text></Pressable>
+      <Link href={"/tabs"} style={[GlobalStyles.linkButton]}>Login</Link>
+      <Pressable style={[GlobalStyles.linkButton]} ><Text>Registro</Text></Pressable>
     </View>
   );
 }
