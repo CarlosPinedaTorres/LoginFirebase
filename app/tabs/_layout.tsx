@@ -9,15 +9,19 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Pantalla Inicio',
-        //   tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          title: 'Desconectar',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="sign-out" size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="VisualizarDatos"
         options={{
           title:'Visualizar Datos',
-        //   tabBarIcon: ({ color }) => <FontAwesome size={28} name="film" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="eye" size={size} color={color} />
+          ),
         }}
       />
    
