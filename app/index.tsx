@@ -1,29 +1,53 @@
-import { Text, View, TextInput, Pressable } from "react-native";
-import { Link } from "expo-router";
+import { Text, View, TextInput, Pressable ,Alert} from "react-native";
+import { Link, router } from "expo-router";
 import { StyleSheet } from "react-native";
 import GlobalStyles from "@/themes/GlobalStyles";
 import CustomTextInput from "@/components/CustomTextInput";
 import { Colors } from "@/themes/Colors";
+import { useState } from "react";
+import { auth } from "@/Firebaseconfig";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
+import { setParams } from "expo-router/build/global-state/routing";
 export default function Index() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const logIn=async()=>{
+    try{
+      const user=await(signInWithEmailAndPassword(auth,email,password))
+      if(user) router.replace("/tabs")
+    }catch(error:any){
+      console.log(error)
+      Alert.alert("Inicio de sesion incorrecto",error)
+    }
+  }
+  const register=async()=>{
+    try{
+      const user=await(createUserWithEmailAndPassword(auth,email,password))
+      if(user) router.replace("/tabs")
+    }catch(error:any){
+      
+      Alert.alert("Error al registrar el usuario", error)
+    }
+  }
   return (
     <View style={GlobalStyles.container}>
       <Text style={styles.title}>Login</Text>
       
       <View style={GlobalStyles.inputContainer}>
-        <CustomTextInput placeholder="Introduce el usuario" width={300} height={50} />
+        <CustomTextInput placeholder="Introduce el correo"  value={email}  onChangeText={setEmail} width={300} height={50} />
       </View>
       
       <View style={GlobalStyles.inputContainer}>
-        <CustomTextInput placeholder="Introduce la contraseña" width={300} height={50}  />
+        <CustomTextInput placeholder="Introduce la contraseña"  value={password} onChangeText={setPassword} width={300} height={50}  />
       </View>
+
+    
+  
+
+      <Pressable onPress={logIn} style={GlobalStyles.linkButton}><Text style={styles.loginText}>Login</Text></Pressable>
       
-      <Link href="/tabs" style={GlobalStyles.linkButton}>
-        <Text style={styles.loginText}>Login</Text>
-      </Link>
-      
-      <Pressable style={styles.registerBoton}>
-        <Text style={styles.registerText}>Registro</Text>
-      </Pressable>
+      <Pressable onPress={register} style={[styles.registerBoton,{margin:15}]}><Text style={styles.registerText}>Registrar</Text></Pressable>
+ 
     </View>
   );
 }

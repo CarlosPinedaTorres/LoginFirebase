@@ -10,8 +10,10 @@ const index = () => {
   }
   return (
     <View style={GlobalStyles.container}>
-      <Text style={[GlobalStyles.linkButton,styles.text]}>Desconectarse</Text>
-      <Pressable style={styles.registerBoton}>
+       <Pressable style={GlobalStyles.linkButton}>
+            <Text style={styles.text}>Desconectar</Text>
+          </Pressable>
+      <Pressable style={[styles.registerBoton,{margin:15}]}>
             <Text style={styles.logOutText}>Cerrar Sesion</Text>
           </Pressable>
 
@@ -21,7 +23,6 @@ const index = () => {
 
 const styles=StyleSheet.create({
   text:{
-    margin:20,
     color: Colors.negro,
     fontSize: 20,
     fontWeight: 'bold',

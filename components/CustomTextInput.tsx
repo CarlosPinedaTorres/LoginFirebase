@@ -1,20 +1,26 @@
-import { View, Text,TextInput } from 'react-native'
+import { View, Text,TextInput,TextInputProps } from 'react-native'
 import React from 'react'
 import GlobalStyles from '@/themes/GlobalStyles'
 
-interface Props{
-    placeholder:string,
+interface CustomInputProps extends TextInputProps{
+
     height?: number,
     width?:number,
+   
+
 }
 
-const CustomTextInput = ({placeholder,height,width}:Props) => {
+// TextInputProps
+const CustomTextInput:React.FC<CustomInputProps> = ({placeholder,height,width,onChangeText,value,...rest}) => {
   return (
     <TextInput
+    value={value}
+    onChangeText={onChangeText}
       placeholder={placeholder}
       style={[{ height, width ,fontSize:30},GlobalStyles.input]}
+      {...rest}
     />
   )
 }
 
-export default CustomTextInput
+export default CustomTextInput   

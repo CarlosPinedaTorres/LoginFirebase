@@ -17,7 +17,7 @@ const GlobalStyles=StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         textAlign:"center",
-        paddingTop:10,
+      
     },
     input: {
         backgroundColor: Colors.mostazaClaro,
