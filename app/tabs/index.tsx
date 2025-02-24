@@ -3,19 +3,24 @@ import { Link, useRouter } from 'expo-router'
 import React from 'react'
 import GlobalStyles from '@/themes/GlobalStyles';
 import { Colors } from '@/themes/Colors';
+import { getAuth, signOut } from '@firebase/auth';
+import { auth } from '@/Firebaseconfig';
 const index = () => {
   const router=useRouter();
+
+    getAuth().onAuthStateChanged((user)=>{
+      if(!user) router.replace('/')
+    })
   const logout=()=>{
     router.push("/")
   }
+
+
   return (
     <View style={GlobalStyles.container}>
-       <Pressable style={GlobalStyles.linkButton}>
-            <Text style={styles.text}>Desconectar</Text>
-          </Pressable>
-      <Pressable style={[styles.registerBoton,{margin:15}]}>
-            <Text style={styles.logOutText}>Cerrar Sesion</Text>
-          </Pressable>
+       <Pressable style={GlobalStyles.linkButton} onPress={()=>auth.signOut()}>
+            <Text style={styles.text}>Cerrar Sesion</Text>
+        </Pressable>
 
     </View>
   )
